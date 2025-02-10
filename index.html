@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #001F3F, #0074D9);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+        .text-section {
+            max-width: 400px;
+        }
+        .text-section h1 {
+            font-size: 36px;
+            background: linear-gradient(to right, #7FDBFF, #39CCCC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-section p {
+            font-size: 16px;
+        }
+        .calculator {
+            width: 320px;
+            background: #001F3F;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .display {
+            width: 90%;
+            height: 70px;
+            text-align: right;
+            font-size: 36px;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: #002B5B;
+            color: white;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 18px;
+            font-size: 20px;
+            border: none;
+            border-radius: 12px;
+            background: #0074D9;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .operator {
+            background: #7FDBFF;
+            color: black;
+        }
+        .equal {
+            background: #39CCCC;
+            color: black;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-section">
+            <h1>ByteCalc</h1>
+            <p>Smart, sleek, and efficient—ByteCalc is designed for seamless calculations with a modern touch.</p>
+        </div>
+        <div class="calculator">
+            <input type="text" class="display" id="display" disabled>
+            <div class="buttons">
+                <button class="operator" onclick="clearDisplay()">AC</button>
+                <button class="operator" onclick="appendValue('+/-')">±</button>
+                <button class="operator" onclick="appendValue('%')">%</button>
+                <button class="operator" onclick="appendValue('/')">÷</button>
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button class="operator" onclick="appendValue('*')">×</button>
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button class="operator" onclick="appendValue('-')">-</button>
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button class="operator" onclick="appendValue('+')">+</button>
+                <button onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+                <button onclick="appendValue('.')">.</button>
+                <button class="equal" onclick="calculateResult()">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function appendValue(value) {
+            document.getElementById("display").value += value;
+        }
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+        function calculateResult() {
+            try {
+                document.getElementById("display").value = eval(document.getElementById("display").value);
+            } catch {
+                document.getElementById("display").value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
